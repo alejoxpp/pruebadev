@@ -114,4 +114,9 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    'initial_super_user' => [
+    'email' => env('INITIAL_SUPER_USER_EMAIL'),
+    'password' => env('INITIAL_SUPER_USER_PASSWORD'),
+],
+
 ];

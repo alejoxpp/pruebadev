@@ -1,0 +1,349 @@
+/* ===========================
+   RESET & BASE
+   =========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ===========================
+   BODY & BACKGROUND
+   =========================== */
+body {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(https://cdn.pixabay.com/photo/2017/03/25/17/56/color-2174050_1280.png);
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+}
+
+/* ===========================
+   CARD CONTAINER
+   =========================== */
+.content {
+  width: 420px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  padding: 38px 36px 32px;
+}
+
+/* ===========================
+   FORM HEADER
+   =========================== */
+.form-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.form-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a2e;
+  letter-spacing: -0.3px;
+  margin-bottom: 4px;
+}
+
+.form-header p {
+  font-size: 14px;
+  color: #4a4a6a;
+  font-weight: 400;
+}
+
+/* ===========================
+   FIELD GROUP (label + input)
+   =========================== */
+.field-group {
+  margin-bottom: 18px;
+}
+
+.field-group label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #2d2d4e;
+  margin-bottom: 8px;
+}
+
+/* ===========================
+   INPUT BOX
+   =========================== */
+.input-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-box input {
+  width: 100%;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1.5px solid rgba(100, 100, 180, 0.25);
+  border-radius: 12px;
+  padding: 0 46px 0 44px;
+  font-size: 14.5px;
+  color: #1a1a2e;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+
+.input-box input::placeholder {
+  color: #9999b5;
+  font-size: 14px;
+}
+
+.input-box input:focus {
+  outline: none;
+  border-color: #5b5bf5;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 0 3.5px rgba(91, 91, 245, 0.18);
+}
+
+/* Left icon */
+.input-icon {
+  position: absolute;
+  left: 14px;
+  font-size: 18px;
+  color: #7878b5;
+  pointer-events: none;
+  z-index: 1;
+  transition: color 0.25s;
+}
+
+.input-box:focus-within .input-icon {
+  color: #5b5bf5;
+}
+
+/* Right toggle icon */
+.toggle-password {
+  position: absolute;
+  right: 14px;
+  font-size: 17px;
+  color: #9999b5;
+  cursor: pointer;
+  z-index: 1;
+  transition: color 0.2s;
+  user-select: none;
+}
+
+.toggle-password:hover {
+  color: #5b5bf5;
+}
+
+/* ===========================
+   REMEMBER ME & FORGOT
+   =========================== */
+.remember {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  margin-top: 2px;
+}
+
+.remember-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.remember-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #5b5bf5;
+  cursor: pointer;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.remember-label span {
+  font-size: 13.5px;
+  color: #2d2d4e;
+  font-weight: 400;
+}
+
+.forgot-link {
+  font-size: 13.5px;
+  color: #5b5bf5;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.forgot-link:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
+/* ===========================
+   LOGIN BUTTON
+   =========================== */
+.btn {
+  display: block;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(135deg, #eb40e8 0%, #a009a3 100%);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(171, 91, 245, 0.45);
+  transition: transform 0.18s, box-shadow 0.18s, opacity 0.18s;
+  margin-bottom: 22px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 24px rgba(91, 91, 245, 0.55);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 12px rgba(91, 91, 245, 0.4);
+}
+
+/* ===========================
+   DIVIDER
+   =========================== */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(100, 100, 160, 0.3);
+}
+
+.divider span {
+  font-size: 12.5px;
+  color: #6a6a8a;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* ===========================
+   SOCIAL BUTTONS
+   =========================== */
+.social-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.social-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1.5px solid rgba(200, 200, 220, 0.6);
+  border-radius: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.18s,
+    box-shadow 0.18s;
+  text-decoration: none;
+}
+
+.social-btn:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(91, 91, 245, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.social-btn i {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.google-icon {
+  color: #ea4335;
+}
+
+.facebook-icon {
+  color: #1877f2;
+}
+
+.social-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.social-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.social-sub {
+  font-size: 10.5px;
+  color: #7a7a9a;
+  font-weight: 400;
+}
+
+/* ===========================
+   SUPPRESS BROWSER AUTOFILL UI
+   =========================== */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+input::-webkit-credentials-auto-fill-button,
+input::-webkit-clear-button,
+input::-webkit-inner-spin-button,
+input::-webkit-contacts-auto-fill-button {
+display: none !important;
+visibility: hidden !important;
+pointer-events: none;
+height: 0;
+width: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+transition: background-color 5000s ease-in-out 0s;
+}
+
+.alert-error {
+margin-bottom: 18px;
+padding: 12px 14px;
+border: 1px solid #ef4444;
+border-left: 4px solid #dc2626;
+border-radius: 10px;
+background: rgba(255, 164, 164, 0.329);
+color: #991b1b;
+font-size: 13px;
+}
+
+.alert-error p + p {
+margin-top: 4px;
+
+}
