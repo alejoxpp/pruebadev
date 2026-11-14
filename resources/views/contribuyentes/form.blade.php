@@ -59,6 +59,16 @@
     <label>Usuario</label>
     <input name="usuario" value="{{ old('usuario', $contribuyente->usuario ?? '') }}" required>
 
+    @if (! $editando)
+    <label>Contraseña temporal</label>
+    <input type="password" name="password"
+        autocomplete="new-password" minlength="8" required>
+
+    <label>Confirmar contraseña</label>
+    <input type="password" name="password_confirmation"
+        autocomplete="new-password" minlength="8" required>
+    @endif
+
     <button type="submit">{{ $editando ? 'Actualizar' : 'Guardar' }}</button>
 </form>
 
