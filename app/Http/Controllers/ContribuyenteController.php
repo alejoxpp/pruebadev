@@ -23,7 +23,7 @@ class ContribuyenteController extends \Illuminate\Routing\Controller
      */
     public function create()
     {
-     return view('contribuyentes.form');
+    return view('contribuyentes.form');
     }        
 
     /**
