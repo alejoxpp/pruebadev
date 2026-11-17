@@ -41,7 +41,9 @@
             <th>Nombres</th>
             <th>Apellidos</th>
             <th>Teléfono</th>
-            <th>Acciones</th>
+            @if (auth()->user()->role === 'super_usuario')
+                <th>Acciones</th>
+            @endif
         </tr>
     </thead>
     <tbody>
@@ -54,8 +56,8 @@
                 <td>{{ $contribuyente->telefono }}</td>
 
                 <td>
-                    <a href="{{ route('contribuyentes.show', $contribuyente) }}">Ver</a>
                     @if (auth()->user()->role === 'super_usuario')
+                    <a href="{{ route('contribuyentes.show', $contribuyente) }}">Ver</a>
                     <a href="{{ route('contribuyentes.edit', $contribuyente) }}">Editar</a>
                     <form action="{{ route('contribuyentes.destroy', $contribuyente) }}"
                         method="POST"

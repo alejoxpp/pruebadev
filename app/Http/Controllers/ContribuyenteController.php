@@ -53,18 +53,19 @@ public function store(Request $request)
 {
     $datos = $this->validarYPreparar($request);
 
-    $password = $request->validate([
+    $cuenta = $request->validate([
         'password' => ['required', 'string', 'min:8', 'confirmed'],
-    ])['password'];
+        'role' => ['required', Rule::in(['usuario', 'administrador', 'super_usuario'])],
+    ]);
 
-    DB::transaction(function () use ($datos, $password): void {
+    DB::transaction(function () use ($datos, $cuenta): void {
         $contribuyente = Contribuyente::create($datos);  
         $contribuyente->user()->create([
             'name' => $contribuyente->nombre_completo,
             'email' => $contribuyente->email,
             'username' => $contribuyente->usuario,
-            'password' => $password,
-            'role' => 'usuario',
+            'password' => $cuenta['password'],
+            'role' => $cuenta['role'],
             'active' => true,
         ]);
     });
@@ -96,12 +97,19 @@ public function store(Request $request)
      */
     public function update(Request $request, Contribuyente $contribuyente)
     {
-    
     $datos = $this->validarYPreparar($request, $contribuyente);
 
-    $contribuyente->update($datos);
+    DB::transaction(function () use ($contribuyente, $datos): void {
+        $contribuyente->update($datos);
 
-    return redirect()
+        if ($contribuyente->user) {
+            $contribuyente->user->update([
+                'email' => $datos['email'],
+            ]);
+        }
+    });
+
+    return redirect()   
         ->route('contribuyentes.index')
         ->with('success', 'Contribuyente actualizado correctamente.');
     }

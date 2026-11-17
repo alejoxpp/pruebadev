@@ -9,12 +9,12 @@ Route::get('/', [ContribuyenteController::class, 'index'])
     ->middleware('auth');
 
 Route::resource('contribuyentes', ContribuyenteController::class)
-    ->only(['create', 'store', 'edit', 'update', 'destroy'])
+    ->only(['create', 'store', 'edit', 'update', 'destroy', 'show'])
     ->middleware(['auth', 'superusuario']);
 
 Route::resource('contribuyentes', ContribuyenteController::class)
-    ->only(['index', 'show'])
-    ->middleware('auth');
+    ->only(['index'])
+    ->middleware(['auth', 'admin']);
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])
     ->name('login');

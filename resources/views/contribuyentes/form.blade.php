@@ -22,6 +22,21 @@
         @method('PUT')
     @endif
 
+    @if(! $editando)
+        <label for="role">Rol de la cuenta</label>
+    <select id="role" name="role" required>
+        @foreach ([
+            'usuario' => 'Usuario',
+            'administrador' => 'Administrador',
+            'super_usuario' => 'Súper Usuario',
+        ] as $valor => $etiqueta)
+            <option value="{{ $valor }}" @selected(old('role', 'usuario') === $valor)>
+                {{ $etiqueta }}
+            </option>
+        @endforeach
+    </select>
+    @endif
+
     <label>Tipo de documento</label>
     <input id="tipo_documento" name="tipo_documento"
         value="{{ old('tipo_documento', $contribuyente->tipo_documento ?? '') }}" required>

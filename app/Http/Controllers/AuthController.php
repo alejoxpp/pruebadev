@@ -15,24 +15,31 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+        $datos = $request->validate([
+            'identificador' => ['required', 'string', 'max:130'],
+            'password' => ['required', 'string'],
         ]);
 
-        $credentials['active'] = true;
+        $campoLogin = filter_var($datos['identificador'], FILTER_VALIDATE_EMAIL)
+            ? 'email'
+            : 'username';
 
-        if (Auth::attempt($credentials)) {
+        $credenciales = [
+            $campoLogin => $datos['identificador'],
+            'password' => $datos['password'],
+            'active' => true,
+        ];
+
+        if (Auth::attempt($credenciales)) {
             $request->session()->regenerate();
 
             return redirect()->intended(route('contribuyentes.index'));
         }
 
         return back()
-            ->withErrors(['email' => 'Credenciales incorrectas o cuenta inactiva.'])
-            ->onlyInput('email');
-    }
-
+            ->withErrors(['identificador' => 'Credenciales incorrectas o cuenta inactiva.'])
+            ->onlyInput('identificador');
+            }
     public function logout(Request $request)
     {
         Auth::logout();

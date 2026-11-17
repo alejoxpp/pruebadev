@@ -29,11 +29,18 @@
             </div>
 
             <div class="field-group">
-                <label for="username">Email</label>
-                <div class="input-box">
-                    <i class="ri-user-line input-icon"></i>
-                      <input type="email" id="email" name="email"
-                      placeholder="Ingrese su email" autocomplete="username" required>
+            <label for="identificador">Email o usuario</label>
+            <div class="input-box">
+                <i class="ri-user-line input-icon"></i>
+                <input
+                    type="text"
+                    id="identificador"
+                    name="identificador"
+                    value="{{ old('identificador') }}"
+                    placeholder="Ingrese su email o usuario"
+                    autocomplete="username"
+                    required
+                >
                 </div>
             </div>
 
@@ -58,11 +65,10 @@
           -->
 
             <button type="submit" class="btn">Ingresar</button>
-
+<!-- Botones de redes sociales 
             <div class="divider">
                 <span>O continua con</span>
             </div>
-
             <div class="social-buttons">
                 <a href="#" class="social-btn google-btn">
                     <i class="ri-google-fill google-icon"></i>
@@ -81,7 +87,7 @@
             </div>
         </form>
     </div>
-
+-->
 <script>
     const togglePassword = document.querySelector('#togglePassword');
     const password = document.querySelector('#password');
