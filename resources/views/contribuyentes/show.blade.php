@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ asset('/style/show.css') }}">
 <h1>Información del contribuyente</h1>
 
 <dl>
@@ -27,6 +28,15 @@
 
     <dt>Fecha del sistema</dt>
     <dd>{{ $contribuyente->fecha_sistema }}</dd>
+</dl>
+
+<h2>Frecuencia de letras</h2>
+
+<dl>
+    @foreach ($frecuenciaLetras as $letra => $cantidad)
+        <dt>{{ $letra }}</dt>
+        <dd>{{ $cantidad }}</dd>
+    @endforeach
 </dl>
 
 <a href="{{ route('contribuyentes.index') }}">Volver al listado</a>

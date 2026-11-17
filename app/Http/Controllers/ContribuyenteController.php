@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use App\Support\ContadorLetras;
 
 class ContribuyenteController extends \Illuminate\Routing\Controller
 {
@@ -79,9 +80,13 @@ public function store(Request $request)
      */
     public function show(Contribuyente $contribuyente)
     {
+    {
+        $frecuenciaLetras = ContadorLetras::contar(
+            ($contribuyente->nombre ?? '') . ' ' . ($contribuyente->apellidos ?? '')
+        );
 
-        return view('contribuyentes.show', compact('contribuyente'));
-    
+        return view('contribuyentes.show', compact('contribuyente', 'frecuenciaLetras'));
+    }
     }
 
     /**

@@ -1,7 +1,8 @@
-@php($editando = isset($contribuyente))
-
+@php
+    $editando = isset($contribuyente);
+@endphp
+<link rel="stylesheet" href="{{ asset('/style/form.css') }}">
 <h1>{{ $editando ? 'Editar contribuyente' : 'Nuevo contribuyente' }}</h1>
-
 @if ($errors->any())
     <div>
         <p>Error, por favor corrija:</p>
@@ -36,11 +37,32 @@
         @endforeach
     </select>
     @endif
+    @php
+        $tiposDocumento = [
+            'CC' => 'CC - Cédula de ciudadanía',
+            'TI' => 'TI - Tarjeta de identidad',
+            'CE' => 'CE - Cédula de extranjería',
+            'NIT' => 'NIT',
+            'Pasaporte' => 'Pasaporte',
+        ];
 
-    <label>Tipo de documento</label>
-    <input id="tipo_documento" name="tipo_documento"
-        value="{{ old('tipo_documento', $contribuyente->tipo_documento ?? '') }}" required>
+        $tipoActual = old('tipo_documento', $contribuyente->tipo_documento ?? '');
+    @endphp
 
+    <label for="tipo_documento">Tipo de documento</label>
+    <select id="tipo_documento" name="tipo_documento" required>
+        <option value="" disabled @selected($tipoActual === '')>Seleccione...</option>
+
+        @if ($tipoActual !== '' && ! array_key_exists($tipoActual, $tiposDocumento))
+            <option value="{{ $tipoActual }}" selected>{{ $tipoActual }}</option>
+        @endif
+
+        @foreach ($tiposDocumento as $valor => $etiqueta)
+            <option value="{{ $valor }}" @selected($tipoActual === $valor)>
+                {{ $etiqueta }}
+            </option>
+        @endforeach
+    </select>
     <label>Documento</label>
     <input name="documento"
         value="{{ old('documento', $contribuyente->documento ?? '') }}" required>
@@ -86,6 +108,7 @@
 
     <button type="submit">{{ $editando ? 'Actualizar' : 'Guardar' }}</button>
 </form>
+<a href="{{ route('contribuyentes.index') }}">Volver al listado</a>
 
 <script>
     const tipoDocumento = document.getElementById('tipo_documento');
@@ -102,6 +125,5 @@
         razonSocial.disabled = !esNit;
     }
 
-    tipoDocumento.addEventListener('input', actualizarCampos);
-    actualizarCampos();
+    tipoDocumento.addEventListener('change', actualizarCampos);
 </script>

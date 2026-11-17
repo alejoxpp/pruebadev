@@ -1,0 +1,310 @@
+/* =========================================
+   VARIABLES DE TEMA: AZUL, VERDEMARINO Y VERDE CLARO
+   ========================================= */
+:root {
+    /* Azules */
+    --blue-primary: #1aaaa7; /* Azul oscuro corporativo */
+    --blue-hover: #12b9b9;
+    
+    /* Verdemarinos (Teal) */
+    --teal-primary: #0d3a94; 
+    --teal-hover: #0f4676;
+    --teal-light: #ccf0fb;
+    
+    /* Verdes claros */
+    --green-success-bg: #d1fae5;
+    --green-success-text: #065f46;
+    --green-hover-row: #ecfdf5;
+    
+    /* Neutros */
+    --bg-page: #f8fafc;
+    --bg-surface: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    
+    /* Peligro (Eliminar) */
+    --danger: #ef4444;
+    
+    --radius: 8px;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* =========================================
+   ESTILOS GENERALES
+   ========================================= */
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.5;
+}
+
+/* Contenedor principal sugerido */
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--blue-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid var(--teal-primary);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* =========================================
+   BOTONES Y ALERTAS SUPERIORES
+   ========================================= */
+/* Botón: Nuevo contribuyente */
+body > a[href*="create"] {
+    display: inline-block;
+    background-color: var(--blue-primary);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background-color 0.2s;
+    margin-bottom: 1.5rem;
+}
+
+body > a[href*="create"]:hover {
+    background-color: var(--blue-hover);
+}
+
+/* Formulario: Cerrar sesión */
+form[action*="logout"] {
+    float: right;
+    margin-top: 0.5rem;
+}
+
+form[action*="logout"] button {
+    background-color: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+form[action*="logout"] button:hover {
+    background-color: var(--bg-surface);
+    color: var(--blue-primary);
+    border-color: var(--blue-primary);
+}
+
+/* Mensaje de éxito */
+form[action*="logout"] + p, 
+p:has(+ form[action*="index"]) {
+    background-color: var(--green-success-bg);
+    color: var(--green-success-text);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius);
+    border-left: 5px solid #10b981;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* =========================================
+   FORMULARIO DE FILTROS
+   ========================================= */
+form[action*="index"] {
+    background-color: var(--bg-surface);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--teal-primary);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+form[action*="index"] input {
+    flex: 1 1 160px;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    transition: all 0.2s;
+}
+
+form[action*="index"] input:focus {
+    outline: none;
+    border-color: var(--teal-primary);
+    box-shadow: 0 0 0 3px var(--teal-light);
+}
+
+form[action*="index"] button {
+    background-color: var(--teal-primary);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+form[action*="index"] button:hover {
+    background-color: var(--teal-hover);
+}
+
+form[action*="index"] a {
+    color: var(--teal-primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.5rem;
+}
+
+form[action*="index"] a:hover {
+    color: var(--blue-primary);
+}
+
+/* =========================================
+   TABLA DE CONTRIBUYENTES
+   ========================================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+thead {
+    background-color: var(--blue-primary);
+}
+
+th {
+    text-align: left;
+    padding: 1rem 1.5rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+tbody tr {
+    transition: background-color 0.2s;
+}
+
+/* Hover en las filas usando el verde claro */
+tbody tr:hover {
+    background-color: var(--green-hover-row);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Fila vacía (forelse empty) */
+td[colspan="6"] {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* =========================================
+   ACCIONES (VER, EDITAR, ELIMINAR)
+   ========================================= */
+td a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+    transition: color 0.2s;
+}
+
+/* Botón Ver */
+td a[href*="show"] {
+    color: var(--teal-primary);
+}
+td a[href*="show"]:hover {
+    color: var(--blue-primary);
+}
+
+/* Botón Editar */
+td a[href*="edit"] {
+    color: var(--blue-primary);
+}
+td a[href*="edit"]:hover {
+    color: var(--blue-hover);
+    text-decoration: underline;
+}
+
+/* Formulario Eliminar */
+td form {
+    display: inline-block;
+}
+
+td form button {
+    background: none;
+    border: none;
+    color: var(--danger);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0;
+    font-family: inherit;
+}
+
+td form button:hover {
+    color: #b91c1c;
+    text-decoration: underline;
+}
+
+/* =========================================
+   PAGINACIÓN
+   ========================================= */
+nav[role="navigation"] {
+    margin-top: 2rem;
+}
+
+nav[role="navigation"] ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+nav[role="navigation"] li {
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+nav[role="navigation"] a {
+    color: var(--blue-primary);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem;
+}
+
+nav[role="navigation"] a:hover {
+    color: var(--blue-hover);
+}

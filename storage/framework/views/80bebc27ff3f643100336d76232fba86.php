@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?php echo e(asset('/style/show.css')); ?>">
 <h1>Información del contribuyente</h1>
 
 <dl>
@@ -27,6 +28,15 @@
 
     <dt>Fecha del sistema</dt>
     <dd><?php echo e($contribuyente->fecha_sistema); ?></dd>
+</dl>
+
+<h2>Frecuencia de letras</h2>
+
+<dl>
+    <?php $__currentLoopData = $frecuenciaLetras; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $letra => $cantidad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <dt><?php echo e($letra); ?></dt>
+        <dd><?php echo e($cantidad); ?></dd>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </dl>
 
 <a href="<?php echo e(route('contribuyentes.index')); ?>">Volver al listado</a><?php /**PATH C:\laragon\www\pruebadev\resources\views/contribuyentes/show.blade.php ENDPATH**/ ?>

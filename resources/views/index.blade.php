@@ -1,5 +1,5 @@
 <h1>Contribuyentes</h1>
-
+<link rel="stylesheet" href="{{ asset('/style/index.css') }}">
 @if (auth()->user()->role === 'super_usuario')
     <a href="{{ route('contribuyentes.create') }}">Nuevo contribuyente</a>
 @endif
@@ -41,8 +41,7 @@
             <th>Nombres</th>
             <th>Apellidos</th>
             <th>Teléfono</th>
-            @if (auth()->user()->role === 'super_usuario')
-                <th>Acciones</th>
+            @if (in_array(auth()->user()->role, ['administrador', 'super_usuario'], true))                <th>Acciones</th>
             @endif
         </tr>
     </thead>
@@ -56,9 +55,11 @@
                 <td>{{ $contribuyente->telefono }}</td>
 
                 <td>
-                    @if (auth()->user()->role === 'super_usuario')
+                    @if (auth()->user()->role === 'super_usuario' || auth()->user()->role === 'administrador')
                     <a href="{{ route('contribuyentes.show', $contribuyente) }}">Ver</a>
                     <a href="{{ route('contribuyentes.edit', $contribuyente) }}">Editar</a>
+                    @endif
+                    @if (auth()->user()->role === 'super_usuario')
                     <form action="{{ route('contribuyentes.destroy', $contribuyente) }}"
                         method="POST"
                         style="display: inline"

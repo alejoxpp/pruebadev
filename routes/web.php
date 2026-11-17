@@ -7,14 +7,18 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/', [ContribuyenteController::class, 'index'])
     ->middleware('auth');
-
+// Acciones para superusuarios: crear y eliminar contribuyentes
 Route::resource('contribuyentes', ContribuyenteController::class)
-    ->only(['create', 'store', 'edit', 'update', 'destroy', 'show'])
+    ->only(['create', 'store', 'destroy'])
     ->middleware(['auth', 'superusuario']);
-
+// Ver detalles para administradores y superusuarios
+Route::resource('contribuyentes', ContribuyenteController::class)
+    ->only(['show', 'edit', 'update'])
+    ->middleware(['auth', 'admin']);
+// Cualquier usuario autenticado: ver el listado
 Route::resource('contribuyentes', ContribuyenteController::class)
     ->only(['index'])
-    ->middleware(['auth', 'admin']);
+    ->middleware('auth');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])
     ->name('login');

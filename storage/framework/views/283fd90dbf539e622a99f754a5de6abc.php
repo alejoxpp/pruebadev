@@ -1,7 +1,8 @@
-<?php ($editando = isset($contribuyente)); ?>
-
+<?php
+    $editando = isset($contribuyente);
+?>
+<link rel="stylesheet" href="<?php echo e(asset('/style/form.css')); ?>">
 <h1><?php echo e($editando ? 'Editar contribuyente' : 'Nuevo contribuyente'); ?></h1>
-
 <?php if($errors->any()): ?>
     <div>
         <p>Error, por favor corrija:</p>
@@ -37,11 +38,33 @@
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </select>
     <?php endif; ?>
+    <?php
+        $tiposDocumento = [
+            'CC' => 'CC - Cédula de ciudadanía',
+            'TI' => 'TI - Tarjeta de identidad',
+            'CE' => 'CE - Cédula de extranjería',
+            'NIT' => 'NIT',
+            'Pasaporte' => 'Pasaporte',
+        ];
 
-    <label>Tipo de documento</label>
-    <input id="tipo_documento" name="tipo_documento"
-        value="<?php echo e(old('tipo_documento', $contribuyente->tipo_documento ?? '')); ?>" required>
+        $tipoActual = old('tipo_documento', $contribuyente->tipo_documento ?? '');
+    ?>
 
+    <label for="tipo_documento">Tipo de documento</label>
+    <select id="tipo_documento" name="tipo_documento" required>
+        <option value="" disabled <?php if($tipoActual === ''): echo 'selected'; endif; ?>>Seleccione...</option>
+
+        <?php if($tipoActual !== '' && ! array_key_exists($tipoActual, $tiposDocumento)): ?>
+            <option value="<?php echo e($tipoActual); ?>" selected><?php echo e($tipoActual); ?></option>
+        <?php endif; ?>
+
+        <?php $__currentLoopData = $tiposDocumento; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $valor => $etiqueta): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e($valor); ?>" <?php if($tipoActual === $valor): echo 'selected'; endif; ?>>
+                <?php echo e($etiqueta); ?>
+
+            </option>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </select>
     <label>Documento</label>
     <input name="documento"
         value="<?php echo e(old('documento', $contribuyente->documento ?? '')); ?>" required>
@@ -87,6 +110,7 @@
 
     <button type="submit"><?php echo e($editando ? 'Actualizar' : 'Guardar'); ?></button>
 </form>
+<a href="<?php echo e(route('contribuyentes.index')); ?>">Volver al listado</a>
 
 <script>
     const tipoDocumento = document.getElementById('tipo_documento');
@@ -103,6 +127,5 @@
         razonSocial.disabled = !esNit;
     }
 
-    tipoDocumento.addEventListener('input', actualizarCampos);
-    actualizarCampos();
+    tipoDocumento.addEventListener('change', actualizarCampos);
 </script><?php /**PATH C:\laragon\www\pruebadev\resources\views/contribuyentes/form.blade.php ENDPATH**/ ?>

@@ -1,0 +1,118 @@
+/* =========================================
+   VARIABLES DE TEMA: AZUL, VERDEMARINO Y VERDE CLARO
+   ========================================= */
+:root {
+    --blue-primary: #1e3a8a;
+    --teal-primary: #0d9488; 
+    --teal-hover: #0f766e;
+    --bg-page: #f8fafc;
+    --bg-surface: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --radius: 8px;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* =========================================
+   ESTILOS BÁSICOS
+   ========================================= */
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido */
+}
+
+h1 {
+    color: var(--blue-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    border-bottom: 3px solid var(--teal-primary);
+    padding-bottom: 0.5rem;
+    width: 100%;
+    max-width: 700px;
+}
+
+/* =========================================
+   TARJETA DE INFORMACIÓN (Lista de definición)
+   ========================================= */
+dl {
+    background-color: var(--bg-surface);
+    width: 100%;
+    max-width: 700px;
+    margin: 0 0 2.5rem 0;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border-color);
+    border-top: 5px solid var(--blue-primary);
+    
+    /* Grid para alinear Términos (dt) y Descripciones (dd) */
+    display: grid;
+    grid-template-columns: 35% 65%;
+    align-items: center;
+}
+
+/* Términos (Títulos de los campos) */
+dt {
+    padding: 1.2rem 1.5rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+    background-color: #f8fafc; /* Fondo ligeramente grisáceo para los títulos */
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+/* Descripciones (Datos del contribuyente) */
+dd {
+    margin: 0; /* Resetea el margen por defecto de <dd> */
+    padding: 1.2rem 1.5rem;
+    color: var(--text-main);
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+}
+
+/* Eliminar el borde inferior de la última fila */
+dt:nth-last-child(2),
+dd:last-child {
+    border-bottom: none;
+}
+
+/* Redondear esquinas inferiores del fondo de dt */
+dt:nth-last-child(2) {
+    border-bottom-left-radius: 4px;
+}
+
+/* =========================================
+   BOTÓN DE VOLVER
+   ========================================= */
+a[href*="index"] {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--teal-primary);
+    border: 2px solid var(--teal-primary);
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    text-align: center;
+    width: 100%;
+    max-width: 250px;
+}
+
+a[href*="index"]:hover {
+    background-color: var(--teal-primary);
+    color: white;
+}

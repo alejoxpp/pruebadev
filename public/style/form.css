@@ -1,0 +1,180 @@
+/* =========================================
+   VARIABLES DE TEMA: AZUL, VERDEMARINO Y VERDE CLARO
+   ========================================= */
+:root {
+    --blue-primary: #1e3a8a;
+    --blue-hover: #1e40af;
+    --teal-primary: #0d9488; 
+    --teal-hover: #0f766e;
+    --teal-light: #ccfbf1;
+    --bg-page: #f8fafc;
+    --bg-surface: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --danger-bg: #fef2f2;
+    --danger-border: #ef4444;
+    --danger-text: #991b1b;
+    --radius: 8px;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* =========================================
+   ESTILOS BÁSICOS
+   ========================================= */
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido horizontalmente */
+}
+
+h1 {
+    color: var(--blue-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    border-bottom: 3px solid var(--teal-primary);
+    padding-bottom: 0.5rem;
+    width: 100%;
+    max-width: 600px; /* Alineado con el ancho del formulario */
+}
+
+/* Manejo del atributo hidden del JS */
+[hidden] {
+    display: none !important;
+}
+
+/* =========================================
+   BLOQUE DE ERRORES DE VALIDACIÓN
+   ========================================= */
+/* Selecciona el div que contiene la lista de errores */
+div:has(ul) {
+    background-color: var(--danger-bg);
+    border-left: 5px solid var(--danger-border);
+    color: var(--danger-text);
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius);
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.1);
+}
+
+div:has(ul) p {
+    margin-top: 0;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+div:has(ul) ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+div:has(ul) li {
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+}
+
+/* =========================================
+   FORMULARIO PRINCIPAL
+   ========================================= */
+form[method="POST"] {
+    background-color: var(--bg-surface);
+    padding: 2.5rem 2rem;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border-color);
+    border-top: 5px solid var(--blue-primary);
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+}
+
+/* Etiquetas */
+form[method="POST"] label {
+    display: block;
+    font-weight: 600;
+    color: var(--blue-primary);
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* Quitar el margen superior del primer label */
+form[method="POST"] label:first-of-type {
+    margin-top: 0;
+}
+
+/* Campos de entrada (inputs y selects) */
+form[method="POST"] input,
+form[method="POST"] select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background-color: var(--bg-surface);
+    transition: all 0.2s ease;
+}
+
+/* Estado Focus */
+form[method="POST"] input:focus,
+form[method="POST"] select:focus {
+    outline: none;
+    border-color: var(--teal-primary);
+    box-shadow: 0 0 0 4px var(--teal-light);
+}
+
+/* Campos deshabilitados (generados por tu JS) */
+form[method="POST"] input:disabled {
+    background-color: #f1f5f9;
+    color: var(--text-muted);
+    cursor: not-allowed;
+    border-color: #cbd5e1;
+}
+
+/* Contenedores agrupados (#persona-fields y #nit-fields) */
+#persona-fields,
+#nit-fields {
+    background-color: #f8fafc; /* Fondo ligeramente gris para diferenciarlos */
+    padding: 0.1rem 1.5rem 1.5rem 1.5rem;
+    margin-top: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px dashed #cbd5e1;
+}
+
+/* =========================================
+   BOTÓN DE GUARDAR / ACTUALIZAR
+   ========================================= */
+form[method="POST"] button[type="submit"] {
+    width: 100%;
+    margin-top: 2.5rem;
+    background-color: var(--teal-primary);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.025em;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+form[method="POST"] button[type="submit"]:hover {
+    background-color: var(--teal-hover);
+}
+
+form[method="POST"] button[type="submit"]:active {
+    transform: scale(0.99);
+}
