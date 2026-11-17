@@ -83,10 +83,12 @@ public function store(Request $request)
     {
         $frecuenciaLetras = ContadorLetras::contar(
             ($contribuyente->nombre ?? '') . ' ' . ($contribuyente->apellidos ?? '')
+
         );
 
         return view('contribuyentes.show', compact('contribuyente', 'frecuenciaLetras'));
     }
+
     }
 
     /**

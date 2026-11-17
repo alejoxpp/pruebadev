@@ -41,8 +41,7 @@
             <th>Nombres</th>
             <th>Apellidos</th>
             <th>Teléfono</th>
-            <?php if(auth()->user()->role === 'super_usuario' || auth()->user()->role === 'administrador'): ?>
-                <th>Acciones</th>
+            <?php if(in_array(auth()->user()->role, ['administrador', 'super_usuario'], true)): ?>                <th>Acciones</th>
             <?php endif; ?>
         </tr>
     </thead>
@@ -56,16 +55,16 @@
                 <td><?php echo e($contribuyente->telefono); ?></td>
 
                 <td>
-                    <?php if(auth()->user()->role === 'super_usuario' || auth()->user()->role === 'administrador'): ?>
+                    <?php if(auth()->user()->role === 'super_usuario'): ?>
                     <a href="<?php echo e(route('contribuyentes.show', $contribuyente)); ?>">Ver</a>
                     <a href="<?php echo e(route('contribuyentes.edit', $contribuyente)); ?>">Editar</a>
+                    <?php endif; ?>
+                    <?php if(auth()->user()->role === 'super_usuario'): ?>
                     <form action="<?php echo e(route('contribuyentes.destroy', $contribuyente)); ?>"
                         method="POST"
                         style="display: inline"
                         onsubmit="return confirm('¿Eliminar este contribuyente?')">
                     <?php echo csrf_field(); ?>
-                    <?php endif; ?>
-                    <?php if(auth()->user()->role === 'super_usuario'): ?>
                         <?php echo method_field('DELETE'); ?>
                         <button type="submit">Eliminar</button>
                     </form>

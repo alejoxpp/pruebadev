@@ -55,7 +55,7 @@
                 <td>{{ $contribuyente->telefono }}</td>
 
                 <td>
-                    @if (auth()->user()->role === 'super_usuario' || auth()->user()->role === 'administrador')
+                    @if (auth()->user()->role === 'super_usuario')
                     <a href="{{ route('contribuyentes.show', $contribuyente) }}">Ver</a>
                     <a href="{{ route('contribuyentes.edit', $contribuyente) }}">Editar</a>
                     @endif
