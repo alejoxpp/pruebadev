@@ -28,3 +28,6 @@ Route::post('/login', [AuthController::class, 'login'])
 Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');
+Route::post('/contribuyentes/validar-unicidad', [ContribuyenteController::class, 'validarUnicidad'])
+    ->middleware(['auth', 'admin'])
+    ->name('contribuyentes.validar-unicidad');

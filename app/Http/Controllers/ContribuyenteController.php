@@ -196,4 +196,49 @@ private function validarYPreparar(
             ->route('contribuyentes.index')
             ->with('success', 'Contribuyente eliminado correctamente.');
     }
+//Valida en tiempo real la unicidad del documento o email, ayudando al usuario.
+    public function validarUnicidad(Request $request)
+{
+    $campo = $request->input('campo');
+    $maximo = $campo === 'documento' ? 30 : 130;
+
+    $reglas = [
+        'campo' => ['required', Rule::in(['documento', 'email'])],
+        'valor' => ['required', 'string', "max:$maximo"],
+        'contribuyente_id' => ['nullable', 'integer', 'exists:contribuyentes,id'],
+    ];
+
+    if ($campo === 'email') {
+        $reglas['valor'][] = 'email:rfc';
+    }
+
+    $datos = $request->validate($reglas);
+
+    if ($datos['campo'] === 'documento') {
+        $consulta = DB::table('contribuyentes')
+            ->where('documento', $datos['valor']);
+
+        if (isset($datos['contribuyente_id'])) {
+            $consulta->where('id', '!=', $datos['contribuyente_id']);
+        }
+    } else {
+        $consulta = DB::table('users')
+            ->where('email', $datos['valor']);
+
+        if (isset($datos['contribuyente_id'])) {
+            $usuarioId = DB::table('users')
+                ->where('contribuyente_id', $datos['contribuyente_id'])
+                ->value('id');
+
+            if ($usuarioId !== null) {
+                $consulta->where('id', '!=', $usuarioId);
+            }
+        }
+    }
+
+    return response()->json([
+        'disponible' => ! $consulta->exists(),
+    ]);
+    }
+
 }
